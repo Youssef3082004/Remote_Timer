@@ -1,5 +1,6 @@
 import time
 from data.jsondata import Json
+from helper.Colors import INFO, WARNING, color_text
 from helper.Formating import Formating
 
 class Cursor:
@@ -7,7 +8,7 @@ class Cursor:
     def keep_computer_active(self, record_elapsed_time: bool = True) -> None:
         import pyautogui
 
-        print("Mouse mover started. Press Ctrl+C to stop.")
+        print(color_text("Mouse mover started. Press Ctrl+C to stop.", INFO))
         start_time = time.monotonic()
         try:
             while True:
@@ -22,7 +23,7 @@ class Cursor:
                 # Repeat every eight minutes.
                 time.sleep(60 * 8)
         except KeyboardInterrupt:
-            print("\nMouse mover stopped.")
+            print(color_text("\nMouse mover stopped.", WARNING))
         finally:
             if record_elapsed_time:
                 elapsed = int(time.monotonic() - start_time)

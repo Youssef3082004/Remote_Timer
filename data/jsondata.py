@@ -1,6 +1,7 @@
 import json
 import datetime
 from Model.Day import Day
+from helper.Colors import INFO, color_text
 from helper.Formating import Formating
 
 class Json:
@@ -55,4 +56,4 @@ class Json:
     def display_records_by_date(self, date_prefix: str | None = None) -> None:
         for day in self.load_records():
             if date_prefix is None or day.date.startswith(date_prefix):
-                print(f"{day.date} : {day.formatted_duration}")
+                print(color_text(f"{day.date} = {day.formatted_duration}", INFO))

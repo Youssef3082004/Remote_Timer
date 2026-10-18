@@ -23,6 +23,7 @@ daily totals—all from the terminal.
 | ➖ Deduct time | Subtracts elapsed time from the newest records first. |
 | 📅 Daily history | Shows all records or filters them by date. |
 | 📊 Total time | Displays the combined recorded time as `HH:MM:SS`. |
+| 🎨 Colored output | Uses clear colors for prompts, status updates, and errors. |
 | 💾 Local storage | Keeps your data locally in a readable JSON file. |
 
 ## 🚀 Quick start
@@ -72,6 +73,7 @@ session. Option `1` saves the elapsed time before stopping.
 - Python 3.10 or newer
 - Pydantic 2.x
 - PyAutoGUI 0.9.54 or newer
+- Colorama 0.4.6
 - A graphical desktop session for options `1` and `3`
 
 PyAutoGUI may require additional system packages on Linux. If installation
@@ -108,6 +110,7 @@ timer/
 ├── data/
 │   └── jsondata.py      # JSON persistence and record queries
 ├── helper/
+│   ├── Colors.py        # Shared terminal color palette
 │   └── Formating.py     # Duration formatting
 ├── main.py              # Command-line menu
 ├── requirements.txt     # Python dependencies
