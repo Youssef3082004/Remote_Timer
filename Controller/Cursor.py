@@ -4,7 +4,7 @@ from data.jsondata import Json
 from helper.Formating import Formating
 class Cursor:
 
-    def move(self):
+    def move(self,time_count:bool = True) -> int:
         print("Mouse mover started. Press Ctrl+C to stop.")                                                                                     
         start_time = time.monotonic()                                       
         try:                                                                
@@ -13,20 +13,22 @@ class Cursor:
                 x, y = pyautogui.position()                                 
 
                 # Move cursor 100 pixels to the right                       
-                pyautogui.moveTo(x + 100, y + 100, duration=0.5)            
+                pyautogui.moveTo(x + 100, y + 100, duration=1)            
                 time.sleep(1)                                               
 
                 # Return cursor to original position                        
-                pyautogui.moveTo(x, y, duration=0.5)                        
+                pyautogui.moveTo(x, y, duration=1)                        
 
-                # Wait 60 seconds                                           
-                time.sleep(60)                                              
+                # Wait 8 minutes                                           
+                time.sleep((60 * 8))                                              
 
         except KeyboardInterrupt:                                           
             print("\nMouse mover stopped.")                                 
 
         finally:                                                            
-            elapsed = int(time.monotonic() - start_time)                    
-            Json().add(seconds=elapsed)  
-            Formating().format(seconds_input=elapsed)                                   
+            if time_count == True:                           
+                elapsed = int(time.monotonic() - start_time)                    
+                Json().add(seconds=elapsed)
+                Formating().format(seconds_input=elapsed)   
+
                                                                         

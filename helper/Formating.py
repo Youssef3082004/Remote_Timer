@@ -5,7 +5,7 @@ class Formating:
         minutes, seconds = divmod(remainder, 60) 
 
         if print_statement:                       
-            print(f"Final runtime: {hours:02d}:{minutes:02d}:{seconds:02d}")
+            print(f"Your Total recorded time =  {hours:02d}:{minutes:02d}:{seconds:02d}")
 
         return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
         
