@@ -1,34 +1,30 @@
-import pyautogui
-import time     
+import time
 from data.jsondata import Json
 from helper.Formating import Formating
+
 class Cursor:
 
-    def move(self,time_count:bool = True) -> int:
-        print("Mouse mover started. Press Ctrl+C to stop.")                                                                                     
-        start_time = time.monotonic()                                       
-        try:                                                                
-            while True:                                                     
-                # Get current mouse position                                
-                x, y = pyautogui.position()                                 
+    def keep_computer_active(self, record_elapsed_time: bool = True) -> None:
+        import pyautogui
 
-                # Move cursor 100 pixels to the right                       
-                pyautogui.moveTo(x + 100, y + 100, duration=1)            
-                time.sleep(1)                                               
+        print("Mouse mover started. Press Ctrl+C to stop.")
+        start_time = time.monotonic()
+        try:
+            while True:
+                # Get the current mouse position.
+                x, y = pyautogui.position()
 
-                # Return cursor to original position                        
-                pyautogui.moveTo(x, y, duration=1)                        
+                # Move the cursor away from and back to its original position.
+                pyautogui.moveTo(x + 100, y + 100, duration=1)
+                time.sleep(1)
+                pyautogui.moveTo(x, y, duration=1)
 
-                # Wait 8 minutes                                           
-                time.sleep((60 * 8))                                              
-
-        except KeyboardInterrupt:                                           
-            print("\nMouse mover stopped.")                                 
-
-        finally:                                                            
-            if time_count == True:                           
-                elapsed = int(time.monotonic() - start_time)                    
-                Json().add(seconds=elapsed)
-                Formating().format(seconds_input=elapsed)   
-
-                                                                        
+                # Repeat every eight minutes.
+                time.sleep(60 * 8)
+        except KeyboardInterrupt:
+            print("\nMouse mover stopped.")
+        finally:
+            if record_elapsed_time:
+                elapsed = int(time.monotonic() - start_time)
+                Json().add_time(seconds=elapsed)
+                Formating().format_duration(seconds=elapsed)

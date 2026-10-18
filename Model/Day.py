@@ -6,5 +6,5 @@ class Day(BaseModel):
     seconds: int
 
     @property
-    def Format(self):
-        return Formating().format(seconds_input=self.seconds,print_statement=False)
+    def formatted_duration(self) -> str:
+        return Formating().format_duration(seconds=self.seconds, print_result=False)

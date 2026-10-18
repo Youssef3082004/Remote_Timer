@@ -1,11 +1,11 @@
-
 class Formating:
-    def format(self,seconds_input:int,print_statement:bool = True):
-        hours, remainder = divmod(seconds_input, 3600)                        
-        minutes, seconds = divmod(remainder, 60) 
 
-        if print_statement:                       
-            print(f"Your Total recorded time =  {hours:02d}:{minutes:02d}:{seconds:02d}")
+    def format_duration(self, seconds: int, print_result: bool = True) -> str:
+        hours, remainder = divmod(seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
 
-        return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-        
+        formatted_duration = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+        if print_result:
+            print(f"Recorded time: {formatted_duration}")
+
+        return formatted_duration

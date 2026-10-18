@@ -1,34 +1,36 @@
 from data.jsondata import Json
 from Controller.Cursor import Cursor
 from Controller.Timer import Timer
+
 options = [
-    "- Press '1' to move the cursor and track elapsed time.",
-    "- Press '2' to track over time and deacreased from elapsed time.",
-    "- Press '3' to move the cursor without tracking time.",
-    "- Press '4' to view your total recorded time for each day.",
-    "- Press '5' to view your total recorded time for specific day.",
-    "- Press '6' to view your total recorded time",
+    "press '1' to Keep the computer active and record the elapsed time.",
+    "press '2' to Start a timer and subtract the elapsed time from your records.",
+    "press '3' to Keep the computer active without recording time.",
+    "press '4' to Show the recorded time for every day.",
+    "press '5' to Show the recorded time for a specific date.",
+    "press '6' to Show the total recorded time.",
 ]
 
 try:
-    user_input = input(f"{"\n".join(options)}\nChoose Mode: ")
+    menu = "\n".join(options)
+    user_input = input(f"{menu}\nSelect an option: ")
     print("*" * 50)
 
     if user_input == "1":
-        Cursor().move(time_count=True)
+        Cursor().keep_computer_active(record_elapsed_time=True)
     elif user_input == "2":
-        Timer().Calc(add=False)
+        Timer().track_elapsed_time(add_to_records=False)
     elif user_input == "3": 
-        Cursor().move(time_count=False)
+        Cursor().keep_computer_active(record_elapsed_time=False)
     elif user_input == "4": 
-        Json().select_by_date()
+        Json().display_records_by_date()
     elif user_input == "5": 
-        day = input("Write Date: ")
-        Json().select_by_date(date=day)
+        day = input("Enter a date (DD/MM/YYYY): ")
+        Json().display_records_by_date(date_prefix=day)
     elif user_input == "6":
-        Json().total_time(formated=True)
+        print(f"Total Recorded Time = {Json().get_total_time(formatted=True)}")
     else: 
-        print("oops! You Choosed Mode not Exist")
+        print("That option does not exist. Please select a number from 1 to 6.")
 
 except KeyboardInterrupt:
-    print("Program Stopped!")
+    print("\nProgram Stopped.")
