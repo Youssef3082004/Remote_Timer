@@ -7,12 +7,8 @@
 Record focused time, deduct breaks, keep your computer active, and review your
 daily totals—all from the terminal.
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![Pydantic](https://img.shields.io/badge/Pydantic-2.x-E92063?logo=pydantic&logoColor=white)
-
 </div>
 
----
 
 ## ✨ Features
 
@@ -51,6 +47,55 @@ python3 main.py
 
 > Run this command from the project root so the application reads and writes
 > the correct `time.json` file.
+
+### 4. Optional: install the `timer` terminal command
+
+You can install the application as a `timer` command and run it from any
+terminal. From the project root, use the setup script for your operating
+system.
+
+#### Linux
+
+```bash
+bash scripts/linux.bash
+```
+
+The Linux installer uses `sudo` to install the command in `/usr/local/bin`.
+If `.venv` does not exist, the installer creates it and installs the required
+Python packages automatically.
+
+#### macOS
+
+```bash
+bash scripts/mac.bash
+```
+
+The macOS installer uses `sudo` to install the command in `/usr/local/bin`.
+If `.venv` does not exist, the installer creates it and installs the required
+Python packages automatically.
+
+#### Windows
+
+In Command Prompt:
+
+```bat
+scripts/windows.bat
+```
+
+Or in PowerShell:
+
+```powershell
+.\scripts\windows.bat
+```
+
+The Windows installer adds the command to your user `PATH`. Open a new
+terminal after it finishes.
+
+After installing on any platform, start the application with:
+
+```bash
+timer
+```
 
 ## 🎮 Menu options
 
@@ -114,6 +159,10 @@ timer/
 │   └── Formating.py     # Duration formatting
 ├── main.py              # Command-line menu
 ├── requirements.txt     # Python dependencies
+├── scripts/
+│   ├── linux.bash       # Linux command installer
+│   ├── mac.bash         # macOS command installer
+│   └── windows.bat      # Windows command installer
 └── time.json            # Saved time records
 ```
 
