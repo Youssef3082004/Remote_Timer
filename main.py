@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 from data.jsondata import Json
 from Controller.Cursor import Cursor
 from Controller.Timer import Timer
@@ -10,8 +12,7 @@ options = [
     "Press '4' to show the recorded time for every day.",
     "Press '5' to show the recorded time for a specific date.",
     "Press '6' to show the total recorded time.",
-    "Press '7' to close terminal",
-
+    "Press '7' to close terminal.",
 ]
 
 try:
@@ -34,7 +35,7 @@ try:
         Json().display_records_by_date(date_prefix=day)
     elif user_input == "6":
         total = Json().get_total_time(formatted=True)
-        print(color_text(f"Total recorded time: {total}", SUCCESS))
+        print(color_text(f"Total Recorded Time = {total}", SUCCESS))
     elif user_input == "7":
         print(color_text("Terminal is Closed!", ERROR))
     else: 
