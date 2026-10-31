@@ -2,13 +2,13 @@ import time
 from data.jsondata import Json
 from helper.Colors import INFO, WARNING, color_text
 from helper.Formating import Formating
-
+from Controller.StartTime import Time
 class Cursor:
 
     def keep_computer_active(self, record_elapsed_time: bool = True) -> None:
         import pyautogui
 
-        print(color_text("Mouse mover started. Press Ctrl+C to stop.", INFO))
+        print(color_text(f"Mouse mover started. Press Ctrl+C to stop.\n- Started from {Time.get_current_time()}", INFO))
         start_time = time.monotonic()
         try:
             while True:

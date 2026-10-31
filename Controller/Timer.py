@@ -2,14 +2,14 @@ import time
 from data.jsondata import Json
 from helper.Colors import INFO, WARNING, color_text
 from helper.Formating import Formating
-
+from Controller.StartTime import Time
 
 class Timer:
 
     def track_elapsed_time(self, add_to_records: bool = True) -> None:
         start_time = time.monotonic()
         action = "add it to" if add_to_records else "subtract it from"
-        message = f"Timer started. Press Ctrl+C to stop and {action} your records."
+        message = f"Timer started. Press Ctrl+C to stop and {action} your records.\n- Started from {Time.get_current_time()}"
         print(color_text(message, INFO))
         try:
             while True:
