@@ -2,7 +2,7 @@ import time
 from data.jsondata import Json
 from helper.Colors import INFO, WARNING, color_text
 from helper.Formating import Formating
-from Controller.StartTime import Time
+from helper.StartTime import Time
 class Cursor:
 
     def keep_computer_active(self, record_elapsed_time: bool = True) -> None:

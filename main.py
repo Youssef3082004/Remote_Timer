@@ -1,45 +1,13 @@
 #!/usr/bin/env bash
 
 from data.jsondata import Json
-from Controller.Cursor import Cursor
-from Controller.Timer import Timer
-from helper.Colors import ACCENT, DIVIDER, ERROR, SUCCESS, WARNING, color_text
-from argparse import ArgumentParser
+from helper.Cursor import Cursor
+from helper.Timer import Timer
+from helper.Colors import ERROR, SUCCESS, WARNING, color_text
+from Controller.CLIMode import CLIMode
 
-parser = ArgumentParser()
-parser.add_argument("--mode","-m",type=str,
-    help=(
-        "Select a menu option directly and skip the main menu prompt. "
-        "Available modes: 1=keep the computer active and record time, "
-        "2=start a timer and subtract elapsed time, "
-        "3=keep the computer active without recording time, "
-        "4=show records for every day, 5=show records for a specific date, "
-        "6=show total recorded time, 7=close the program. "
-        "Example: main.py -m 1"
-    ),
-)
-args = parser.parse_args()
 
-options = [
-    "Press '1' to keep the computer active and record the elapsed time.",
-    "Press '2' to start a timer and subtract the elapsed time from your records.",
-    "Press '3' to keep the computer active without recording time.",
-    "Press '4' to show the recorded time for every day.",
-    "Press '5' to show the recorded time for a specific date.",
-    "Press '6' to show the total recorded time.",
-    "Press '7' to close terminal.",
-]
-
-def get_mode(cli_mode):
-    if cli_mode is not None:
-        return cli_mode
-
-    menu = "\n".join(options)
-    option = input(f"{color_text(menu, ACCENT)}\n{color_text('Select an option: ', WARNING)}".strip())
-    print(color_text("*" * 50, DIVIDER))
-    return option
-
-mode = get_mode(args.mode)
+mode = CLIMode().get_mode()
 
 try:
     if mode =="1":
