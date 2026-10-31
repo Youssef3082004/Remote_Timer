@@ -4,6 +4,21 @@ from data.jsondata import Json
 from Controller.Cursor import Cursor
 from Controller.Timer import Timer
 from helper.Colors import ACCENT, DIVIDER, ERROR, SUCCESS, WARNING, color_text
+from argparse import ArgumentParser
+
+parser = ArgumentParser()
+parser.add_argument("--mode","-m",type=str,
+    help=(
+        "Select a menu option directly and skip the main menu prompt. "
+        "Available modes: 1=keep the computer active and record time, "
+        "2=start a timer and subtract elapsed time, "
+        "3=keep the computer active without recording time, "
+        "4=show records for every day, 5=show records for a specific date, "
+        "6=show total recorded time, 7=close the program. "
+        "Example: main.py -m 1"
+    ),
+)
+args = parser.parse_args()
 
 options = [
     "Press '1' to keep the computer active and record the elapsed time.",
@@ -15,28 +30,33 @@ options = [
     "Press '7' to close terminal.",
 ]
 
-try:
-    menu = "\n".join(options)
-    user_input = input(
-        f"{color_text(menu, ACCENT)}\n{color_text('Select an option: ', WARNING)}"
-    )
-    print(color_text("*" * 50, DIVIDER))
+def get_mode(cli_mode):
+    if cli_mode is not None:
+        return cli_mode
 
-    if user_input == "1":
+    menu = "\n".join(options)
+    option = input(f"{color_text(menu, ACCENT)}\n{color_text('Select an option: ', WARNING)}".strip())
+    print(color_text("*" * 50, DIVIDER))
+    return option
+
+mode = get_mode(args.mode)
+
+try:
+    if mode =="1":
         Cursor().keep_computer_active(record_elapsed_time=True)
-    elif user_input == "2":
+    elif mode =="2":
         Timer().track_elapsed_time(add_to_records=False)
-    elif user_input == "3": 
+    elif mode =="3": 
         Cursor().keep_computer_active(record_elapsed_time=False)
-    elif user_input == "4": 
+    elif mode =="1": 
         Json().display_records_by_date()
-    elif user_input == "5": 
+    elif mode =="5": 
         day = input(color_text("Enter a date (DD/MM/YYYY): ", WARNING))
         Json().display_records_by_date(date_prefix=day)
-    elif user_input == "6":
+    elif mode=="6":
         total = Json().get_total_time(formatted=True)
         print(color_text(f"Total Recorded Time = {total}", SUCCESS))
-    elif user_input == "7":
+    elif mode =="7":
         print(color_text("Terminal is Closed!", ERROR))
     else: 
         message = "That option does not exist. Please select a number from 1 to 7."
