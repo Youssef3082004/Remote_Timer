@@ -19,6 +19,7 @@ daily totals—all from the terminal.
 | ➖ Deduct time | Subtracts elapsed time from the newest records first. |
 | 📅 Daily history | Shows all records or filters them by date. |
 | 📊 Total time | Displays the combined recorded time as `HH:MM:SS`. |
+| ⚡ Direct mode | Runs a selected menu action with `-m` or `--mode`. |
 | 🎨 Colored output | Uses clear colors for prompts, status updates, and errors. |
 | 💾 Local storage | Keeps your data locally in a readable JSON file. |
 
@@ -99,7 +100,7 @@ timer
 
 ## 🎮 Menu options
 
-When the application starts, enter a number from `1` to `6`:
+When the application starts, enter a number from `1` to `7`:
 
 | Option | Action |
 | :---: | --- |
@@ -109,9 +110,51 @@ When the application starts, enter a number from `1` to `6`:
 | `4` | Display the recorded time for every day. |
 | `5` | Display the record for a date entered as `DD/MM/YYYY`. |
 | `6` | Display the total time recorded across all days. |
+| `7` | Close the application. |
 
 Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop an active timer or mouse-moving
 session. Option `1` saves the elapsed time before stopping.
+
+## ⚡ Run an option directly
+
+Use `-m` or `--mode` followed by an option number to skip the main menu and
+run that option directly:
+
+```bash
+python3 main.py -m 1
+```
+
+The long form works the same way:
+
+```bash
+python3 main.py --mode 6
+```
+
+If you installed the `timer` command on Linux or macOS, you can pass the mode
+to it instead:
+
+```bash
+timer -m 3
+```
+
+The available values are the same as the menu options:
+
+| Mode | Direct action |
+| :---: | --- |
+| `1` | Keep the computer active and record elapsed time. |
+| `2` | Start a timer and deduct elapsed time from the records. |
+| `3` | Keep the computer active without recording time. |
+| `4` | Show the recorded time for every day. |
+| `5` | Ask for a date, then show the matching record. |
+| `6` | Show the total recorded time. |
+| `7` | Close the application. |
+
+Mode `5` skips the main menu but still asks for the date. Run the built-in
+help command to see the mode description at any time:
+
+```bash
+python3 main.py --help
+```
 
 ## 📦 Requirements
 
@@ -148,16 +191,18 @@ deduction timer removes time from the most recent records first.
 ```text
 timer/
 ├── Controller/
-│   ├── Cursor.py        # Mouse movement and optional time recording
-│   └── Timer.py         # Elapsed-time tracking
+│   └── CLIMode.py       # Menu prompt and command-line mode handling
 ├── Model/
 │   └── Day.py           # Daily time-record model
 ├── data/
 │   └── jsondata.py      # JSON persistence and record queries
 ├── helper/
 │   ├── Colors.py        # Shared terminal color palette
-│   └── Formating.py     # Duration formatting
-├── main.py              # Command-line menu
+│   ├── Cursor.py        # Mouse movement and optional time recording
+│   ├── Formating.py     # Duration formatting
+│   ├── StartTime.py     # Current-time formatting
+│   └── Timer.py         # Elapsed-time tracking
+├── main.py              # Application entry point and option routing
 ├── requirements.txt     # Python dependencies
 ├── scripts/
 │   ├── linux.bash       # Linux command installer
