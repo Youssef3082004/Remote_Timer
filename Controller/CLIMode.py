@@ -1,19 +1,22 @@
 from helper.Colors import ACCENT, DIVIDER, WARNING, color_text
-from argparse import ArgumentParser
+from argparse import ArgumentParser,RawTextHelpFormatter
 
 class CLIMode:
     def __init__(self):
-        self.parser = ArgumentParser()
+        self.parser = ArgumentParser(formatter_class=RawTextHelpFormatter)
         self.parser.add_argument("--mode","-m",type=str,
             help=(
-                "Select a menu option directly and skip the main menu prompt. "
-                "Available modes: 1=keep the computer active and record time, "
-                "2=start a timer and subtract elapsed time, "
-                "3=keep the computer active without recording time, "
-                "4=show records for every day, 5=show records for a specific date, "
-                "6=show total recorded time, 7=close the program. "
-                "Example: main.py -m 1"
-            ),
+                "Select a menu option directly and skip the main menu prompt.\n\n"
+                "Available modes:\n"
+                "  1 = Keep the computer active and record time\n"
+                "  2 = Start a timer and subtract elapsed time\n"
+                "  3 = Keep the computer active without recording time\n"
+                "  4 = Show records for every day\n"
+                "  5 = Show records for a specific date\n"
+                "  6 = Show total recorded time\n"
+                "  7 = Close the program\n\n"
+                "Example: python3 main.py -m 1 || timer -m 1 (if Installed in your os)"
+            )
         )
 
         self.options = [

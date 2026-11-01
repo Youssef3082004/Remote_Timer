@@ -16,7 +16,7 @@ try:
         Timer().track_elapsed_time(add_to_records=False)
     elif mode =="3": 
         Cursor().keep_computer_active(record_elapsed_time=False)
-    elif mode =="1": 
+    elif mode =="4": 
         Json().display_records_by_date()
     elif mode =="5": 
         day = input(color_text("Enter a date (DD/MM/YYYY): ", WARNING))
