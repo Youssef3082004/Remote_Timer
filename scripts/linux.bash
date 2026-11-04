@@ -3,7 +3,7 @@
 set -e
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-PYTHON_EXE="$PROJECT_DIR/.venv/bin/python"
+PYTHON_EXE="$PROJECT_DIR/.venv/bin/python3"
 
 if [ ! -x "$PYTHON_EXE" ]; then
     echo "Virtual environment not found. Creating .venv..."
